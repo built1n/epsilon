@@ -1,0 +1,23 @@
+World 1.0
+MaxWeight -1
+Room 1 "Cliff Edge" "You are standing at the edge of a cliff facing the east. Down below is the sea. The ominous clouds in the sky signal rain."
+     Object sea "It's a long way down. There are some rocks, too."
+     	    Unprintable
+     EndObject
+     Object rocks "They're pretty sharp."
+     	    Unprintable
+     EndObject
+     Object sky "It's filled with gray thunderclouds."
+     	    Unprintable
+     EndObject
+     Object clouds "They cover the whole sky to the east."
+     	    Unprintable
+     EndObject
+     Adjacent east 2
+     Adjacent down 2
+EndRoom
+Room 2 "Cliff Bottom" "Your vision is slowly fading..."
+     Die
+     DeathMessage You got yourself impaled on a rock. You begin to bleed profusely.
+EndRoom
+EndWorld

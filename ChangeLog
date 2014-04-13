@@ -1,0 +1,5 @@
+r0.0.1:
+	First stable release
+	Not fully functional, need to list items in room, and to implement aliases
+r0.0.2:
+	Added support for killing the player if requirements have not been met

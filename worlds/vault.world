@@ -1,0 +1,22 @@
+World 1.0
+Room 1 "Bank Lobby" "You are standing in the lobby of a bank. Several armed guards are guarding the vault to the east. There is a shotgun here."
+      Object shotgun "It is loaded."
+      	     Takeable
+	     Weight 1
+      EndObject
+      Object guards "They're heavily armed, and are eyeing you suspiciously."
+      	     Untakeable
+      EndObject
+      Adjacent east 2
+EndRoom
+Room 2 "Vault" "You shoot the guards, and enter the vault. It's filled with gold in here!"
+     Object gold "It's shiny, and surprisingly heavy."
+     	    Takeable
+     EndObject
+     Require shotgun
+     RequireMessage You need a way to get past the guards.
+     NoReqDie
+     DeathMessage The guards filled you with lead.
+     Adjacent west 1
+EndRoom
+EndWorld

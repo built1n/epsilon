@@ -1,0 +1,4 @@
+World 1.0
+Room 1 "Welcome to OpenRPG!" "OpenRPG is a powerful text-based RPG game. To get started, type 'exit' to exit this prompt, and then 'openrpg WORLD', where WORLD is the name of the game file you want to play."
+EndRoom
+EndWorld

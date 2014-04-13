@@ -1,0 +1,75 @@
+Building==========================================================================
+ You will need these packages to build OpenRPG: GNU G++, and GNU Make. To build, 
+ simply run 'make'. It will produce an executable in the current directory called
+ 'mud'.
+Running===========================================================================
+ Simply run 'mud' to load the default game file (in the working directory), and 
+ play it. Other games, ending with .world, are also availible.
+Making your own world=============================================================
+ All game files start with the text 'World' followed by the version number, and end with the text 'EndWorld' The current version number is 1.0. Then, the rest of the 
+ world is divided into rooms. The world can have a maximum weight that can be
+ carried by the player. A weight of -1 implies no maximum. The maximum weight is 
+ specified by 'MaxWeight' followed by the maximum weight in kg. Rooms are defined 
+ as follows:
+
+  Room 1 "Room Name" "Room description"
+  ...
+  EndRoom
+
+ The number following 'Room' is the room number. It is used internally for 
+ specifying adjacent rooms. Adjacent rooms are defined as follows:
+  
+  World 1.0
+  MaxWeight 10
+  Room 1 "Room 1" "Room 1"
+  Adjacent east 2
+  EndRoom
+  Room 2 "Room 2" "Room 2"
+  Adjacent west 1
+  EndRoom
+  EndWorld
+
+ This will produce a world with 2 rooms, with room 1 being to the west of room 2.
+ Specifying that room 2 is east of room 1, does not automatically imply that room 
+ 1 is west of room 2. You'll need to specify this yourself. Objects are inside
+ rooms. They can have descriptions, like rooms, and can be taken, if so specified.
+ They are defined as follows:
+
+  World 1.0
+  MaxWeight 10
+  Room 1 "Object Room" "There is stuff here."
+  Object cpu "It's an Intel 386."
+  Printable
+  Alias chip
+  Alias i386
+  Alias 386
+  Weight .1
+  Takeable
+  EndObject
+  EndRoom
+  EndWorld
+ 
+ Objects have several properties:
+
+  Printable/Unprintable  | Printability in object list
+  -----------------------+----------------------------
+  Weight (in kg.)        | Weight, duh :P
+  -----------------------+----------------------------
+  Takeable/Untakeable    | Can the player take it?
+  -----------------------+----------------------------
+  Alias (not implemented)| An alternate name
+
+Reporting bugs====================================================================
+ Make sure that you can CONSISTENTLY reproduce the bug, and send a sample game
+ file, if applicable. If not, then fix it yourself (see below)!
+Code layout=======================================================================
+ +===*WARNING*===+
+ |  The code is  |
+ |  rather hard  |
+ |   to read!!   |
+ +===============+
+ There are two main structures: Room, and Object, defined in room.h, and object.h.
+ The world is internally represented as an associative array of int=>Room, called
+ rooms. To read a game file from disk, the readMap() (in read.cpp) function is 
+ used. This is a rather slow function, and it could use some improvement 
+ (error-checking!). From there, the entire game is run in the main() function.
